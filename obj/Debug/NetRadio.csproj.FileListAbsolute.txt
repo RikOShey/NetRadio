@@ -1,0 +1,13 @@
+C:\Users\jario\source\repos\NetRadio\bin\Debug\NetRadio.exe.config
+C:\Users\jario\source\repos\NetRadio\bin\Debug\NetRadio.exe
+C:\Users\jario\source\repos\NetRadio\bin\Debug\NetRadio.pdb
+C:\Users\jario\source\repos\NetRadio\obj\Debug\NetRadio.csproj.AssemblyReference.cache
+C:\Users\jario\source\repos\NetRadio\obj\Debug\NetRadio.Properties.Resources.resources
+C:\Users\jario\source\repos\NetRadio\obj\Debug\NetRadio.csproj.GenerateResource.cache
+C:\Users\jario\source\repos\NetRadio\obj\Debug\NetRadio.csproj.CoreCompileInputs.cache
+C:\Users\jario\source\repos\NetRadio\obj\Debug\NetRadio.exe
+C:\Users\jario\source\repos\NetRadio\obj\Debug\NetRadio.pdb
+C:\Users\jario\source\repos\NetRadio\obj\Debug\NetRadio.Channels.resources
+C:\Users\jario\source\repos\NetRadio\obj\Debug\Interop.WMPLib.dll
+C:\Users\jario\source\repos\NetRadio\obj\Debug\NetRadio.csproj.ResolveComReference.cache
+C:\Users\jario\source\repos\NetRadio\obj\Debug\NetRadio.Netradio.resources
