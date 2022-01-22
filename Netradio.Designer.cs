@@ -42,10 +42,19 @@ namespace NetRadio
             this.btnPlay = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsMenuShowHide = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsMenuStop = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsMenuPlay = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsMenuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
+            this.lblSong = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,24 +80,25 @@ namespace NetRadio
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(378, 299);
+            this.groupBox1.Size = new System.Drawing.Size(378, 300);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Radiokanal";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(93, 270);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(74, 277);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 17);
+            this.label1.Size = new System.Drawing.Size(87, 17);
             this.label1.TabIndex = 7;
             this.label1.Text = "Volym";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // btnVolumeUp
             // 
             this.btnVolumeUp.Image = ((System.Drawing.Image)(resources.GetObject("btnVolumeUp.Image")));
-            this.btnVolumeUp.Location = new System.Drawing.Point(163, 268);
+            this.btnVolumeUp.Location = new System.Drawing.Point(163, 275);
             this.btnVolumeUp.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.btnVolumeUp.Name = "btnVolumeUp";
             this.btnVolumeUp.Size = new System.Drawing.Size(26, 18);
@@ -99,7 +109,7 @@ namespace NetRadio
             // btnVolumeDown
             // 
             this.btnVolumeDown.Image = ((System.Drawing.Image)(resources.GetObject("btnVolumeDown.Image")));
-            this.btnVolumeDown.Location = new System.Drawing.Point(46, 268);
+            this.btnVolumeDown.Location = new System.Drawing.Point(46, 275);
             this.btnVolumeDown.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.btnVolumeDown.Name = "btnVolumeDown";
             this.btnVolumeDown.Size = new System.Drawing.Size(26, 18);
@@ -109,16 +119,15 @@ namespace NetRadio
             // 
             // pBarVolume
             // 
-            this.pBarVolume.Location = new System.Drawing.Point(47, 257);
+            this.pBarVolume.Location = new System.Drawing.Point(47, 264);
             this.pBarVolume.Name = "pBarVolume";
             this.pBarVolume.Size = new System.Drawing.Size(141, 10);
-            this.pBarVolume.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.pBarVolume.TabIndex = 4;
             // 
             // btnVolumeOff
             // 
             this.btnVolumeOff.Image = global::NetRadio.Properties.Resources.volumeoff;
-            this.btnVolumeOff.Location = new System.Drawing.Point(11, 256);
+            this.btnVolumeOff.Location = new System.Drawing.Point(11, 263);
             this.btnVolumeOff.Name = "btnVolumeOff";
             this.btnVolumeOff.Size = new System.Drawing.Size(31, 31);
             this.btnVolumeOff.TabIndex = 3;
@@ -127,22 +136,24 @@ namespace NetRadio
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(210, 256);
+            this.btnStop.Image = ((System.Drawing.Image)(resources.GetObject("btnStop.Image")));
+            this.btnStop.Location = new System.Drawing.Point(291, 263);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 31);
             this.btnStop.TabIndex = 2;
-            this.btnStop.Text = "Stoppa";
             this.btnStop.UseVisualStyleBackColor = true;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
             // btnPlay
             // 
-            this.btnPlay.Location = new System.Drawing.Point(291, 256);
+            this.btnPlay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnPlay.Image = ((System.Drawing.Image)(resources.GetObject("btnPlay.Image")));
+            this.btnPlay.Location = new System.Drawing.Point(291, 263);
             this.btnPlay.Name = "btnPlay";
             this.btnPlay.Size = new System.Drawing.Size(75, 31);
             this.btnPlay.TabIndex = 1;
-            this.btnPlay.Text = "Spela";
             this.btnPlay.UseVisualStyleBackColor = true;
+            this.btnPlay.Visible = false;
             this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
             // pictureBox1
@@ -160,10 +171,60 @@ namespace NetRadio
             // 
             this.notifyIcon1.BalloonTipText = "Dubbeklicka för att visa!";
             this.notifyIcon1.BalloonTipTitle = "NetRadio";
+            this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
             this.notifyIcon1.Text = "NetRadio";
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.DoubleClick += new System.EventHandler(this.notifyIcon1_DoubleClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsMenuShowHide,
+            this.tsMenuStop,
+            this.tsMenuPlay,
+            this.toolStripSeparator1,
+            this.tsMenuExit});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(192, 114);
+            // 
+            // tsMenuShowHide
+            // 
+            this.tsMenuShowHide.Image = ((System.Drawing.Image)(resources.GetObject("tsMenuShowHide.Image")));
+            this.tsMenuShowHide.Name = "tsMenuShowHide";
+            this.tsMenuShowHide.Size = new System.Drawing.Size(191, 26);
+            this.tsMenuShowHide.Text = "Visa/Dölj";
+            this.tsMenuShowHide.Click += new System.EventHandler(this.tsMenuShowHide_Click);
+            // 
+            // tsMenuStop
+            // 
+            this.tsMenuStop.Image = ((System.Drawing.Image)(resources.GetObject("tsMenuStop.Image")));
+            this.tsMenuStop.Name = "tsMenuStop";
+            this.tsMenuStop.Size = new System.Drawing.Size(191, 26);
+            this.tsMenuStop.Text = "Pausa Musik";
+            this.tsMenuStop.Click += new System.EventHandler(this.tsMenuStop_Click);
+            // 
+            // tsMenuPlay
+            // 
+            this.tsMenuPlay.Image = ((System.Drawing.Image)(resources.GetObject("tsMenuPlay.Image")));
+            this.tsMenuPlay.Name = "tsMenuPlay";
+            this.tsMenuPlay.Size = new System.Drawing.Size(191, 26);
+            this.tsMenuPlay.Text = "Spela Musik";
+            this.tsMenuPlay.Click += new System.EventHandler(this.tsMenuPlay_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(188, 6);
+            // 
+            // tsMenuExit
+            // 
+            this.tsMenuExit.Image = ((System.Drawing.Image)(resources.GetObject("tsMenuExit.Image")));
+            this.tsMenuExit.Name = "tsMenuExit";
+            this.tsMenuExit.Size = new System.Drawing.Size(191, 26);
+            this.tsMenuExit.Text = "Avsluta Program";
+            this.tsMenuExit.Click += new System.EventHandler(this.tsMenuExit_Click);
             // 
             // button1
             // 
@@ -176,36 +237,51 @@ namespace NetRadio
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // lblSong
+            // 
+            this.lblSong.Location = new System.Drawing.Point(396, 283);
+            this.lblSong.Name = "lblSong";
+            this.lblSong.Size = new System.Drawing.Size(225, 23);
+            this.lblSong.TabIndex = 4;
+            this.lblSong.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.ImageLocation = "";
-            this.pictureBox2.Location = new System.Drawing.Point(396, 50);
+            this.pictureBox2.Location = new System.Drawing.Point(413, 50);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(223, 261);
+            this.pictureBox2.Size = new System.Drawing.Size(190, 230);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 2500;
             // 
             // Netradio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(631, 328);
+            this.Controls.Add(this.lblSong);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cBoxChannels);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Netradio";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "NetRadio";
+            this.Text = "InternetRadio";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Netradio_FormClosing);
             this.Load += new System.EventHandler(this.Netradio_Load);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
@@ -226,6 +302,14 @@ namespace NetRadio
         private System.Windows.Forms.Button btnVolumeDown;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblSong;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem tsMenuShowHide;
+        private System.Windows.Forms.ToolStripMenuItem tsMenuStop;
+        private System.Windows.Forms.ToolStripMenuItem tsMenuPlay;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem tsMenuExit;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
